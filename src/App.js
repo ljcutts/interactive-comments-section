@@ -10,11 +10,11 @@ function App() {
   console.log(data.comments[1]);
   return (
     <main>
-   {comments.map((comment, index) => {
-        const {content, createdAt, score, user, replies } = comment
-        const {image, username} = user
-       
-        const {png} = image
+      {comments.map((comment, index) => {
+        const { content, createdAt, score, user, replies } = comment;
+        const { image, username } = user;
+
+        const { png } = image;
         return (
           <section key={index}>
             <div className="comment-container">
@@ -120,8 +120,10 @@ function App() {
                             <img src="/images/icon-minus.svg" alt="" />
                           </div>
                           <div className="reply-container-btn">
-                            <img src="/images/icon-reply.svg" alt="" />
-                            <span>Reply</span>
+                            <img src="/images/icon-delete.svg" alt="" />
+                            <span className="trash">Trash</span>
+                            <img src="/images/icon-edit.svg" alt="" />
+                            <span>Edit</span>
                           </div>
                         </div>
                       </div>
@@ -132,6 +134,21 @@ function App() {
           </section>
         );
       })}
+      <div className="add-comment-container">
+        <textarea
+          name=""
+          id="text-box"
+          placeholder="Add a comment..."
+        ></textarea>
+        <div className="comment-container-bottom">
+          <img
+            src="/images/avatars/image-juliusomo.png"
+            width="34px"
+            height="34px"
+          />
+          <button>SEND</button>
+        </div>
+      </div>
     </main>
   );
 }
