@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function CommentLists({removeItem, items, editItem, isEditing}) {
+function CommentLists({removeItem, items, editItem, isEditing, setComment, comment, setCommentList, commentList, setIsEditing, editID, setEditID}) {
+
+
+
   return (
     <section>
       {items.map((item) => {
@@ -19,7 +22,13 @@ function CommentLists({removeItem, items, editItem, isEditing}) {
            </div>
            <div className="content-box">
              {isEditing ? (
-               <textarea className="content">{comment}</textarea>
+               <form>
+                 <textarea
+                   name=""
+                   id="text-box"
+                   placeholder="Edit comment..."
+                 ></textarea>
+               </form>
              ) : (
                <span className="content">{comment}</span>
              )}

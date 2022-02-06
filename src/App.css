@@ -58,6 +58,8 @@ main{
    padding-top: 1.2rem;
   padding-bottom: 1rem;
   line-height: 1.5rem;
+  height: auto;
+  overflow: auto;
 }
 
 .mention{
@@ -95,8 +97,15 @@ main{
 }
 
 .reply-container-btn{
+  display: flex;
+  flex-direction: row;
   color: hsl(238, 40%, 52%);
   font-weight: 500;
+}
+
+.reply-container-btn section:hover{
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .reply-container-btn img{
@@ -132,15 +141,14 @@ main{
 .line-container{
   display: flex;
   flex-direction: column;
- width: 20px;
-  height: 50px;
+  width: 20px;
   margin-top: 1.3rem;
-  height: 289.56px;
+  height: 170px;
 }
 
 .line{
   width: 1.5px;
-  height: 289.56px;
+  height: 170px;
   background: black;
   opacity: 0.1;
 }
@@ -191,6 +199,10 @@ main{
   justify-content: space-between;
 }
 
+.comment-container-bottom button:hover{
+  opacity: 0.5;
+}
+
 .comment-container-bottom button {
   background:hsl(238, 40%, 52%);
   width: 90px;
@@ -200,4 +212,15 @@ main{
   color: white;
   font-weight: 600;
   font-size: 15px;
+  cursor: pointer;
+}
+
+.add-reply-container{
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  height: 185px;
+  width: 340px;
+  background: white;
+  border-radius: 0.7rem;
+  padding: 1rem;
 }
