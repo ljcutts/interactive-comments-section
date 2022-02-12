@@ -1,43 +1,42 @@
-import React, {useState} from "react";
-import data from './data.json'
+import React, { useState } from "react";
+import data from "./data.json";
 
-function AddReply({
-  replyList,
-  setReplyList,
-  setReplyButton,
-  edit,
-  submitUpdate,
+function AddReply2({
+  replyList2,
+  setReplyList2,
+  setReplyButton2,
+  edit2,
+  submitUpdate2,
 }) {
-  const [replys, setReplys] = useState(edit ? edit.value : "");
+  const [replys2, setReplys2] = useState(edit2 ? edit2.value : "");
 
   const handleSubmit = (e) => {
-    if (edit) {
-      submitUpdate({
+    if (edit2) {
+      submitUpdate2({
         id: new Date().getTime().toString(),
-        replys: replys,
+        replys2: replys2,
       });
     }
     e.preventDefault();
-      const newItem = { id: new Date().getTime().toString(), replys: replys };
-      const newReply = [...replyList, newItem];
-      setReplyList(newReply);
-      console.log(replyList);
-    setReplys('');
-    setReplyButton(false);
+    const newItem2 = { id: new Date().getTime().toString(), replys2: replys2 };
+    const newReply2 = [...replyList2, newItem2];
+    setReplyList2(newReply2);
+    setReplys2("");
+    setReplyButton2(false);
   };
 
   ///maybe add form to ReplySection instead of this file
 
   return (
     <form className="add-reply-container" onSubmit={handleSubmit}>
-      {edit ? (
+      {edit2 ? (
         <>
           <textarea
             name=""
             id="text-box"
             placeholder="Add a reply..."
-            value={replys}
-            onChange={(e) => setReplys(e.target.value)}
+            value={replys2}
+            onChange={(e) => setReplys2(e.target.value)}
           ></textarea>
           <div className="comment-container-bottom">
             <img
@@ -54,8 +53,8 @@ function AddReply({
             name=""
             id="text-box"
             placeholder="Add a reply..."
-            value={replys}
-            onChange={(e) => setReplys(e.target.value)}
+            value={replys2}
+            onChange={(e) => setReplys2(e.target.value)}
           ></textarea>
           <div className="comment-container-bottom">
             <img
@@ -71,5 +70,4 @@ function AddReply({
   );
 }
 
-
-export default AddReply;
+export default AddReply2;
