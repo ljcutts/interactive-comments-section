@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import data from "./data.json";
+import React, { useState, useEffect, useRef } from "react";
 
 function AddReply3({
   replyList3,
@@ -8,9 +7,11 @@ function AddReply3({
   edit3,
   submitUpdate3,
 }) {
+  let handleSubmit
   const [replys3, setReplys3] = useState(edit3 ? edit3.value : "");
+  const handle = useRef(null)
 
-  const handleSubmit = (e) => {
+  handleSubmit = (e) => {
     if (edit3) {
       submitUpdate3({
         id: new Date().getTime().toString(),
@@ -25,7 +26,18 @@ function AddReply3({
     setReplyButton3(false);
   };
 
-  ///maybe add form to ReplySection instead of this file
+ useEffect(() => {
+  handle.current.handleSubmit = (e) => {
+       e.preventDefault();
+       const newItem3 = {
+         id: new Date().getTime().toString(),
+         replys3: "hello there",
+       };
+       const newReply3 = [...replyList3, newItem3];
+       setReplyList3(newReply3);
+       setReplys3("");
+   }
+ })
 
   return (
     <form className="add-reply-container" onSubmit={handleSubmit}>
@@ -43,6 +55,7 @@ function AddReply3({
               src="/images/avatars/image-juliusomo.png"
               width="34px"
               height="34px"
+              alt='juliusomo'
             />
             <button>UPDATE</button>
           </div>
@@ -61,6 +74,7 @@ function AddReply3({
               src="/images/avatars/image-juliusomo.png"
               width="34px"
               height="34px"
+              alt='juliusomo'
             />
             <button>REPLY</button>
           </div>

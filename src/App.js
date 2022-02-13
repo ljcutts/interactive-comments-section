@@ -1,15 +1,16 @@
-import React, {useState} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import data from "./data.json";
 import AddReply from "./AddReply";
 import CommentLists from "./CommentLists";
 import ReplySection from "./ReplySection";
 import AddReply2 from "./AddReply2";
 import AddReply3 from "./AddReply3";
-import ReplySection2 from "./ReplySection2"
+import ReplySection2 from "./ReplySection2";
 import ReplySection3 from "./ReplySection3";
 import "./App.css";
+import DeleteInitalCommentModal from "./DeleteInitalCommentModal";
 
-//Work on the Edit feature so that you don't edit it in the "add a comment" box and add a button that says 'update' after you hit the edit button
+//edit functionality doesn't properly work, can't get line to act right
 function App() {
   const getLocalStorage = () => {
     let commentLists = localStorage.getItem("commentLists");
@@ -28,6 +29,7 @@ function App() {
   const [deleteMessage2, setDeleteMessage2] = useState(false);
   const [deleteMessage3, setDeleteMessage3] = useState(false);
   const [deleteCommentMessage, setDeleteCommentMessage] = useState(false);
+  const [deleteInitialCommentMessage, setDeleteInitialCommentMessage] = useState(false);
   const [replyList, setReplyList] = useState([]);
   const [replyList2, setReplyList2] = useState([]);
   const [replyList3, setReplyList3] = useState([]);
@@ -38,43 +40,51 @@ function App() {
   const [score1, setScore1] = useState(12);
   const [score2, setScore2] = useState(5);
   const [score3, setScore3] = useState(4);
+  const [initialReply, setInitialReply] = useState(`I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.`)
   const { comments } = data;
+  const editRef = useRef(null);
 
- const upVote1 = () => {
-   if(score1 !== 13) {
-     setScore1(score1 + 1)
-   }
- }
+   useEffect(() => {
+     if (isEditing) {
+       editRef.current.focus();
+     }
+   }, [isEditing]);
 
- const upVote2 = () => {
-   if (score2 !== 6) {
-     setScore2(score2 + 1);
-   }
- };
+  const upVote1 = () => {
+    if (score1 !== 13) {
+      setScore1(score1 + 1);
+    }
+  };
 
- const upVote3 = () => {
-   if (score3 !== 5) {
-     setScore3(score3 + 1);
-   }
- };
+  const upVote2 = () => {
+    if (score2 !== 6) {
+      setScore2(score2 + 1);
+    }
+  };
 
- const downVote1 = () => {
-   if (score1 === 13) {
-     setScore1(score1 - 1);
-   }
- };
+  const upVote3 = () => {
+    if (score3 !== 5) {
+      setScore3(score3 + 1);
+    }
+  };
 
- const downVote2 = () => {
-   if (score2 === 6) {
-     setScore2(score2 - 1);
-   }
- };
+  const downVote1 = () => {
+    if (score1 === 13) {
+      setScore1(score1 - 1);
+    }
+  };
 
- const downVote3 = () => {
-   if (score3 === 5) {
-     setScore3(score3 - 1);
-   }
- };
+  const downVote2 = () => {
+    if (score2 === 6) {
+      setScore2(score2 - 1);
+    }
+  };
+
+  const downVote3 = () => {
+    if (score3 === 5) {
+      setScore3(score3 - 1);
+    }
+  };
 
   const openReplyBox = () => {
     setReplyButton(!replyButton);
@@ -88,7 +98,6 @@ function App() {
     setReplyButton3(!replyButton3);
   };
 
-
   const updateReply = (replyId, newValue) => {
     setReplyList((prev) =>
       prev.map((item) => (item.id === replyId ? newValue : item))
@@ -101,13 +110,12 @@ function App() {
     );
   };
 
-   const updateReply3 = (replyId, newValue) => {
-     setReplyList3((prev) =>
-       prev.map((item) => (item.id === replyId ? newValue : item))
-     );
-   };
+  const updateReply3 = (replyId, newValue) => {
+    setReplyList3((prev) =>
+      prev.map((item) => (item.id === replyId ? newValue : item))
+    );
+  };
 
-  //for the comment in the replies array in data.json, maybe make another useState for the replies array using its id(reply.filter, something like that)
   const removeItem = (id) => {
     setCommentList(commentList.filter((item) => item.id !== id));
     setDeleteCommentMessage(false);
@@ -115,29 +123,38 @@ function App() {
 
   const deleteMessageToggle = () => {
     setDeleteMessage(!deleteMessage);
-  }
+  };
 
-   const deleteMessageToggle2 = () => {
-     setDeleteMessage2(!deleteMessage2);
-   };
+  const deleteMessageToggle2 = () => {
+    setDeleteMessage2(!deleteMessage2);
+  };
 
-   const deleteMessageToggle3 = () => {
-     setDeleteMessage3(!deleteMessage3);
-   };
+  const deleteMessageToggle3 = () => {
+    setDeleteMessage3(!deleteMessage3);
+  };
 
-    const deleteCommentToggle = () => {
-     setDeleteCommentMessage(!deleteCommentMessage)
-    };
+  const deleteCommentToggle = () => {
+    setDeleteCommentMessage(!deleteCommentMessage);
+  };
 
- const commentToggle = (bool) => {
-   setUpdateComment(bool);
- }
+  const deleteInitialCommentToggle = () => {
+    setDeleteInitialCommentMessage(!deleteInitialCommentMessage);
+  };
 
+  const commentToggle = (bool) => {
+    setUpdateComment(bool);
+  };
 
   const removeReply = (id) => {
     const removedArr = replyList.filter((replies) => replies.id !== id);
     setReplyList(removedArr);
     setDeleteMessage(false);
+  };
+
+  const removeInitialReply = () => {
+    const section = document.getElementById("inital-reply");
+    section.remove();
+    setDeleteInitialCommentMessage(false);
   };
 
   const removeReply2 = (id) => {
@@ -161,7 +178,6 @@ function App() {
     // console.log(isEditing);
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment && isEditing) {
@@ -183,14 +199,17 @@ function App() {
     }
   };
 
- 
+  const toggleEditing = () => {
+    setIsEditing(!isEditing);
+  };
+
   return (
     <main>
       <section>
         {comments
           .filter((comment, index) => index === 0)
           .map((comment, index) => {
-            const { content, createdAt, score, user } = comment;
+            const { content, createdAt, user } = comment;
             const { image, username } = user;
 
             const { png } = image;
@@ -202,6 +221,7 @@ function App() {
                     className="img-container"
                     width="34px"
                     height="34px"
+                    alt='amyrobson'
                   />
                   <span className="username">{username}</span>
                   <span className="comment-date">{createdAt}</span>
@@ -213,12 +233,18 @@ function App() {
                   <div className="vote-counter">
                     <img src="/images/icon-plus.svg" alt="" onClick={upVote1} />
                     {score1}
-                    <img src="/images/icon-minus.svg" alt="" onClick={downVote1} />
+                    <img
+                      src="/images/icon-minus.svg"
+                      alt=""
+                      onClick={downVote1}
+                    />
                   </div>
                   <div
                     className="reply-container-btn"
                     onClick={openReplyBox}
-                    style={{ cursor: "pointer" }}
+                    style={{
+                      cursor: "pointer",
+                    }}
                   >
                     <div>
                       <img src="/images/icon-reply.svg" alt="" />
@@ -237,7 +263,6 @@ function App() {
             deleteMessage={deleteMessage}
             updateReply={updateReply}
             removeReply={removeReply}
-            deleteMessage={deleteMessage}
           />
         )}
         {replyButton && (
@@ -252,19 +277,20 @@ function App() {
         {comments
           .filter((comment, index) => index === 1)
           .map((comment, index) => {
-            const { content, createdAt, score, user, replies } = comment;
+            const { content, createdAt, user, replies } = comment;
             const { image, username } = user;
 
             const { png } = image;
             return (
               <section key={index}>
-                <div className="comment-container" key={index}>
+                <div className="comment-container">
                   <div className="comment-top">
                     <img
                       src={png}
                       className="img-container"
                       width="34px"
                       height="34px"
+                      alt='maxblagun'
                     />
                     <span className="username">{username}</span>
                     <span className="comment-date">{createdAt}</span>
@@ -308,7 +334,7 @@ function App() {
                 {replies
                   .filter((reply, index) => index === 0)
                   .map((reply) => {
-                    const { content, createdAt, user, score, id } = reply;
+                    const { content, createdAt, user } = reply;
                     const { image, username } = user;
                     const { png } = image;
                     return (
@@ -324,6 +350,7 @@ function App() {
                                 className="img-container"
                                 width="34px"
                                 height="34px"
+                                alt="ramsesmiro"n
                               />
                               <span className="username">{username}</span>
                               <span className="comment-date">{createdAt}</span>
@@ -372,12 +399,16 @@ function App() {
                 {replies
                   .filter((reply, index) => index === 1)
                   .map((reply) => {
-                    const { content, createdAt, user, score, id } = reply;
+                    const {createdAt, user, score } = reply;
                     const { image, username } = user;
                     const { png } = image;
                     return (
                       <>
-                        <section key={reply.id} className="reply-section">
+                        <section
+                          key={reply.id}
+                          id="inital-reply"
+                          className="reply-section"
+                        >
                           <div className="line-container-2">
                             <div className="line-2"></div>
                           </div>
@@ -388,6 +419,7 @@ function App() {
                                 className="img-container"
                                 width="34px"
                                 height="34px"
+                                alt="juliusomo"
                               />
                               <span className="username">{username}</span>
                               <div className="you-container">
@@ -397,7 +429,27 @@ function App() {
                             </div>
                             <div className="reply-content-box">
                               <span className="mention">@ramsesmiron</span>
-                              <span className="content"> {content}</span>
+                              {isEditing ? (
+                                <textarea
+                                  ref={editRef}
+                                  // className="content"
+                                  id="inital-text-box"
+                                  value={initialReply}
+                                  onChange={(e) =>
+                                    setInitialReply(e.target.value)
+                                  }
+                                ></textarea>
+                              ) : (
+                                <textarea
+                                  disabled
+                                  id="inital-text-box"
+                                  value={initialReply}
+                                  onChange={(e) =>
+                                    setInitialReply(e.target.value)
+                                  }
+                                >
+                                </textarea>
+                              )}
                             </div>
                             <div className="comment-bottom">
                               <div className="vote-counter">
@@ -406,13 +458,41 @@ function App() {
                                 <img src="/images/icon-minus.svg" alt="" />
                               </div>
                               <div className="reply-container-btn">
-                                <img src="/images/icon-delete.svg" alt="" />
-                                <span className="trash">Trash</span>
-                                <img src="/images/icon-edit.svg" alt="" />
-                                <span>Edit</span>
+                                {isEditing ? (
+                                  <button
+                                    className="inital-button"
+                                    onClick={toggleEditing}
+                                  >
+                                    UPDATE
+                                  </button>
+                                ) : (
+                                  <>
+                                    <section
+                                      onClick={deleteInitialCommentToggle}
+                                    >
+                                      <img
+                                        src="/images/icon-delete.svg"
+                                        alt=""
+                                      />
+                                      <span className="trash">Trash</span>
+                                    </section>
+                                    <section onClick={toggleEditing}>
+                                      <img src="/images/icon-edit.svg" alt="" />
+                                      <span>Edit</span>
+                                    </section>
+                                  </>
+                                )}
                               </div>
                             </div>
                           </div>
+                          {deleteInitialCommentMessage && (
+                            <DeleteInitalCommentModal
+                              deleteInitialCommentToggle={
+                                deleteInitialCommentToggle
+                              }
+                              removeInitialReply={removeInitialReply}
+                            />
+                          )}
                         </section>
                       </>
                     );
@@ -466,6 +546,7 @@ function App() {
             src="/images/avatars/image-juliusomo.png"
             width="34px"
             height="34px"
+            alt='juliusomo'
           />
           {updateComment ? (
             <button onClick={() => commentToggle(false)}>UPDATE</button>

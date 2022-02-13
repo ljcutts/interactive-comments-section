@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import data from "./data.json";
+
 
 function AddReply2({
   replyList2,
@@ -25,9 +25,6 @@ function AddReply2({
     setReplyButton2(false);
   };
 
-
-  ///maybe add form to ReplySection instead of this file
-
   return (
     <form className="add-reply-container" onSubmit={handleSubmit}>
       {edit2 ? (
@@ -44,6 +41,7 @@ function AddReply2({
               src="/images/avatars/image-juliusomo.png"
               width="34px"
               height="34px"
+              alt='juliusomo'
             />
             <button>UPDATE</button>
           </div>
@@ -62,6 +60,7 @@ function AddReply2({
               src="/images/avatars/image-juliusomo.png"
               width="34px"
               height="34px"
+              alt='juliusomo'
             />
             <button>REPLY</button>
           </div>

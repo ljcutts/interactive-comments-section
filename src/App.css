@@ -27,6 +27,7 @@ main{
   padding: 1.2rem;
   background: white;
   padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .comment-top{
@@ -154,7 +155,7 @@ main{
   width: 320px;
   height: auto;
   border-radius: 0.8rem;
-  margin-top: 1.3rem;
+  margin-bottom: 1.3rem;
   padding: 1.2rem;
   background: white;
   padding-bottom: 1.2rem;
@@ -166,18 +167,21 @@ main{
 }
 
 .line-container{
-  display: flex;
-  flex-direction: column;
+ 
   width: 20px;
   margin-top: 1.3rem;
-  /* height: 170px; */
+  height: 194px;
 }
 
 .line{
+  position: relative;
+  top: 0.1rem;
   width: 1.5px;
-  /* height: 170px; */
+ height: 193px;
   background: black;
   opacity: 0.1;
+  margin-right: 1rem;
+  visibility: hidden;
 }
 
 .line-container-2{
@@ -206,7 +210,8 @@ main{
 }
 
 #text-box{
-  display: flex; border-radius: 0.7rem;
+  display: flex; 
+  border-radius: 0.7rem;
   resize: none;
   width: 310px;
   height: 100px;
@@ -216,6 +221,33 @@ main{
   margin-bottom: 0.8rem;
   font-size: 16px;
   border-color: rgba(211,211,211,0.4);
+}
+
+#inital-text-box{
+  resize: none;
+  width: 270px;
+  height: 125px;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  font-weight: 400;
+  color: rgba(0,0,0,0.5);
+  font-size: 16px;
+  border: none;
+  background: white;
+  overflow:hidden;
+  border-radius: 0.7rem;
+}
+
+.inital-button{
+  background:hsl(238, 40%, 52%);
+  width: 90px;
+  height: 45px;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .comment-container-bottom{
@@ -248,6 +280,7 @@ main{
   background: white;
   border-radius: 0.7rem;
   padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .delete-container{
@@ -264,7 +297,7 @@ main{
 
 .delete-box{
   height: 200px;
-  width: 300px;
+  width: 345px;
   background: white;
   border-radius: 0.8rem;
   padding: 2rem;
@@ -277,7 +310,7 @@ main{
 }
 
 .delete-box span{
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   opacity: 0.5;
 }
