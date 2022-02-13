@@ -25,6 +25,7 @@ function App() {
   const [commentList, setCommentList] = useState(getLocalStorage());
   const [editID, setEditID] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [editingInitial, setEditingInital] = useState(false);
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [deleteMessage2, setDeleteMessage2] = useState(false);
   const [deleteMessage3, setDeleteMessage3] = useState(false);
@@ -45,10 +46,10 @@ function App() {
   const editRef = useRef(null);
 
    useEffect(() => {
-     if (isEditing) {
+     if (editingInitial) {
        editRef.current.focus();
      }
-   }, [isEditing]);
+   }, [editingInitial]);
 
   const upVote1 = () => {
     if (score1 !== 13) {
@@ -200,7 +201,7 @@ function App() {
   };
 
   const toggleEditing = () => {
-    setIsEditing(!isEditing);
+    setEditingInital(!editingInitial);
   };
 
   return (
@@ -429,7 +430,7 @@ function App() {
                             </div>
                             <div className="reply-content-box">
                               <span className="mention">@ramsesmiron</span>
-                              {isEditing ? (
+                              {editingInitial ? (
                                 <textarea
                                   ref={editRef}
                                   // className="content"
@@ -458,7 +459,7 @@ function App() {
                                 <img src="/images/icon-minus.svg" alt="" />
                               </div>
                               <div className="reply-container-btn">
-                                {isEditing ? (
+                                {editingInitial ? (
                                   <button
                                     className="inital-button"
                                     onClick={toggleEditing}

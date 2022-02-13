@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState} from "react";
 
 function AddReply3({
   replyList3,
@@ -7,11 +7,10 @@ function AddReply3({
   edit3,
   submitUpdate3,
 }) {
-  let handleSubmit
+ 
   const [replys3, setReplys3] = useState(edit3 ? edit3.value : "");
-  const handle = useRef(null)
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     if (edit3) {
       submitUpdate3({
         id: new Date().getTime().toString(),
@@ -26,18 +25,6 @@ function AddReply3({
     setReplyButton3(false);
   };
 
- useEffect(() => {
-  handle.current.handleSubmit = (e) => {
-       e.preventDefault();
-       const newItem3 = {
-         id: new Date().getTime().toString(),
-         replys3: "hello there",
-       };
-       const newReply3 = [...replyList3, newItem3];
-       setReplyList3(newReply3);
-       setReplys3("");
-   }
- })
 
   return (
     <form className="add-reply-container" onSubmit={handleSubmit}>
