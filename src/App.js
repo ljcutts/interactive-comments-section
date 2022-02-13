@@ -7,7 +7,6 @@ import AddReply2 from "./AddReply2";
 import AddReply3 from "./AddReply3";
 import ReplySection2 from "./ReplySection2"
 import ReplySection3 from "./ReplySection3";
-import DeleteModal from "./DeleteModal";
 import "./App.css";
 
 //Work on the Edit feature so that you don't edit it in the "add a comment" box and add a button that says 'update' after you hit the edit button
@@ -28,13 +27,54 @@ function App() {
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [deleteMessage2, setDeleteMessage2] = useState(false);
   const [deleteMessage3, setDeleteMessage3] = useState(false);
+  const [deleteCommentMessage, setDeleteCommentMessage] = useState(false);
   const [replyList, setReplyList] = useState([]);
   const [replyList2, setReplyList2] = useState([]);
   const [replyList3, setReplyList3] = useState([]);
   const [replyButton, setReplyButton] = useState(false);
   const [replyButton2, setReplyButton2] = useState(false);
   const [replyButton3, setReplyButton3] = useState(false);
+  const [updateComment, setUpdateComment] = useState(false);
+  const [score1, setScore1] = useState(12);
+  const [score2, setScore2] = useState(5);
+  const [score3, setScore3] = useState(4);
   const { comments } = data;
+
+ const upVote1 = () => {
+   if(score1 !== 13) {
+     setScore1(score1 + 1)
+   }
+ }
+
+ const upVote2 = () => {
+   if (score2 !== 6) {
+     setScore2(score2 + 1);
+   }
+ };
+
+ const upVote3 = () => {
+   if (score3 !== 5) {
+     setScore3(score3 + 1);
+   }
+ };
+
+ const downVote1 = () => {
+   if (score1 === 13) {
+     setScore1(score1 - 1);
+   }
+ };
+
+ const downVote2 = () => {
+   if (score2 === 6) {
+     setScore2(score2 - 1);
+   }
+ };
+
+ const downVote3 = () => {
+   if (score3 === 5) {
+     setScore3(score3 - 1);
+   }
+ };
 
   const openReplyBox = () => {
     setReplyButton(!replyButton);
@@ -70,6 +110,7 @@ function App() {
   //for the comment in the replies array in data.json, maybe make another useState for the replies array using its id(reply.filter, something like that)
   const removeItem = (id) => {
     setCommentList(commentList.filter((item) => item.id !== id));
+    setDeleteCommentMessage(false);
   };
 
   const deleteMessageToggle = () => {
@@ -84,30 +125,40 @@ function App() {
      setDeleteMessage3(!deleteMessage3);
    };
 
+    const deleteCommentToggle = () => {
+     setDeleteCommentMessage(!deleteCommentMessage)
+    };
 
+ const commentToggle = (bool) => {
+   setUpdateComment(bool);
+ }
 
 
   const removeReply = (id) => {
     const removedArr = replyList.filter((replies) => replies.id !== id);
     setReplyList(removedArr);
+    setDeleteMessage(false);
   };
 
   const removeReply2 = (id) => {
     const removedArr = replyList2.filter((replies) => replies.id !== id);
     setReplyList2(removedArr);
+    setDeleteMessage2(false);
   };
 
   const removeReply3 = (id) => {
     const removedArr = replyList3.filter((replies) => replies.id !== id);
     setReplyList3(removedArr);
+    setDeleteMessage3(false);
   };
 
   const editItem = (id) => {
+    setUpdateComment(true);
     setIsEditing(true);
     const specificItem = commentList.find((item) => item.id === id);
     setEditID(id);
     setComment(specificItem.comment);
-    console.log(isEditing);
+    // console.log(isEditing);
   };
 
 
@@ -132,6 +183,7 @@ function App() {
     }
   };
 
+ 
   return (
     <main>
       <section>
@@ -159,17 +211,19 @@ function App() {
                 </div>
                 <div className="comment-bottom">
                   <div className="vote-counter">
-                    <img src="/images/icon-plus.svg" alt="" />
-                    {score}
-                    <img src="/images/icon-minus.svg" alt="" />
+                    <img src="/images/icon-plus.svg" alt="" onClick={upVote1} />
+                    {score1}
+                    <img src="/images/icon-minus.svg" alt="" onClick={downVote1} />
                   </div>
                   <div
                     className="reply-container-btn"
                     onClick={openReplyBox}
                     style={{ cursor: "pointer" }}
                   >
-                    <img src="/images/icon-reply.svg" alt="" />
-                    <span>Reply</span>
+                    <div>
+                      <img src="/images/icon-reply.svg" alt="" />
+                      <span>Reply</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -183,6 +237,7 @@ function App() {
             deleteMessage={deleteMessage}
             updateReply={updateReply}
             removeReply={removeReply}
+            deleteMessage={deleteMessage}
           />
         )}
         {replyButton && (
@@ -219,17 +274,27 @@ function App() {
                   </div>
                   <div className="comment-bottom">
                     <div className="vote-counter">
-                      <img src="/images/icon-plus.svg" alt="" />
-                      {score}
-                      <img src="/images/icon-minus.svg" alt="" />
+                      <img
+                        src="/images/icon-plus.svg"
+                        alt=""
+                        onClick={upVote2}
+                      />
+                      {score2}
+                      <img
+                        src="/images/icon-minus.svg"
+                        alt=""
+                        onClick={downVote2}
+                      />
                     </div>
                     <div
                       className="reply-container-btn"
                       onClick={openReplyBox2}
                       style={{ cursor: "pointer" }}
                     >
-                      <img src="/images/icon-reply.svg" alt="" />
-                      <span>Reply</span>
+                      <div>
+                        <img src="/images/icon-reply.svg" alt="" />
+                        <span>Reply</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -269,17 +334,27 @@ function App() {
                             </div>
                             <div className="comment-bottom">
                               <div className="vote-counter">
-                                <img src="/images/icon-plus.svg" alt="" />
-                                {score}
-                                <img src="/images/icon-minus.svg" alt="" />
+                                <img
+                                  src="/images/icon-plus.svg"
+                                  alt=""
+                                  onClick={upVote3}
+                                />
+                                {score3}
+                                <img
+                                  src="/images/icon-minus.svg"
+                                  alt=""
+                                  onClick={downVote3}
+                                />
                               </div>
                               <div
                                 className="reply-container-btn"
                                 onClick={openReplyBox3}
                                 style={{ cursor: "pointer" }}
                               >
-                                <img src="/images/icon-reply.svg" alt="" />
-                                <span>Reply</span>
+                                <div>
+                                  <img src="/images/icon-reply.svg" alt="" />
+                                  <span>Reply</span>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -315,6 +390,9 @@ function App() {
                                 height="34px"
                               />
                               <span className="username">{username}</span>
+                              <div className="you-container">
+                                <span className="inside-you">you</span>
+                              </div>
                               <span className="comment-date">{createdAt}</span>
                             </div>
                             <div className="reply-content-box">
@@ -363,12 +441,17 @@ function App() {
           />
         )}
       </section>
-      {commentList.length > 0 && (
+      {CommentLists.length > 0 && updateComment === false ? (
         <CommentLists
           items={commentList}
           removeItem={removeItem}
           editItem={editItem}
+          commentToggle={commentToggle}
+          deleteCommentMessage={deleteCommentMessage}
+          deleteCommentToggle={deleteCommentToggle}
         />
+      ) : (
+        ""
       )}
       <form className="add-comment-container" onSubmit={handleSubmit}>
         <textarea
@@ -384,7 +467,11 @@ function App() {
             width="34px"
             height="34px"
           />
-          <button>SEND</button>
+          {updateComment ? (
+            <button onClick={() => commentToggle(false)}>UPDATE</button>
+          ) : (
+            <button onClick={() => commentToggle(false)}>SEND</button>
+          )}
         </div>
       </form>
     </main>

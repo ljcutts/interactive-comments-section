@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import data from './data.json'
 
 function AddReply({
@@ -9,6 +9,7 @@ function AddReply({
   submitUpdate,
 }) {
   const [replys, setReplys] = useState(edit ? edit.value : "");
+  const inputRef = useRef(null)
 
   const handleSubmit = (e) => {
     if (edit) {
@@ -56,6 +57,7 @@ function AddReply({
             placeholder="Add a reply..."
             value={replys}
             onChange={(e) => setReplys(e.target.value)}
+            ref={inputRef}
           ></textarea>
           <div className="comment-container-bottom">
             <img

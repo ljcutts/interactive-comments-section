@@ -2,7 +2,15 @@ import React, { useRef, useEffect, useState } from "react";
 import AddReply from "./AddReply";
 import DeleteModal from "./DeleteModal";
 
-function ReplySection({ replyList, removeReply, updateReply, deleteMessageToggle, deleteMessage }) {
+function ReplySection({
+  replyList,
+  removeReply,
+  updateReply,
+  deleteMessageToggle,
+  deleteMessage,
+  setReplyList,
+  setReplyButton,
+}) {
   const [edit, setEdit] = useState({
     id: null,
     value: "",
@@ -16,10 +24,12 @@ function ReplySection({ replyList, removeReply, updateReply, deleteMessageToggle
     });
   };
 
-     if (edit.id) {
-       return <AddReply edit={edit} submitUpdate={submitUpdate}/>
-    }
-    
+  const {id, replys} = replyList
+
+  if (edit.id) {
+    return <AddReply edit={edit} submitUpdate={submitUpdate} />;
+  }
+
   return (
     <section>
       {replyList.map((replies) => {
@@ -27,9 +37,9 @@ function ReplySection({ replyList, removeReply, updateReply, deleteMessageToggle
         return (
           <section className="reply-section" key={id}>
             <div className="line-container">
-              <div className="line" ></div>
+              <div className="line"></div>
             </div>
-            <div className="reply-comment-container" >
+            <div className="reply-comment-container">
               <div className="comment-top">
                 <img
                   src="/images/avatars/image-juliusomo.png"
@@ -38,11 +48,14 @@ function ReplySection({ replyList, removeReply, updateReply, deleteMessageToggle
                   height="34px"
                 />
                 <span className="username">juliusomo</span>
+                <div className="you-container">
+                  <span className="inside-you">you</span>
+                </div>
                 <span className="comment-date">now</span>
               </div>
               <div className="reply-content-box">
                 <span className="mention">@amyrobson</span>
-                <span className="content"> {replys}</span>
+                  <span className="content"> {replys}</span>
               </div>
               <div className="comment-bottom">
                 <div className="vote-counter">
@@ -62,7 +75,13 @@ function ReplySection({ replyList, removeReply, updateReply, deleteMessageToggle
                 </div>
               </div>
             </div>
-            {deleteMessage && <DeleteModal deleteMessageToggle={deleteMessageToggle} removeReply={removeReply} id={id} />}
+            {deleteMessage && (
+              <DeleteModal
+                deleteMessageToggle={deleteMessageToggle}
+                removeReply={removeReply}
+                id={id}
+              />
+            )}
           </section>
         );
       })}

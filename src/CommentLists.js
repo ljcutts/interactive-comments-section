@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import DeleteCommentModal from './DeleteCommentModal';
 
-function CommentLists({removeItem, items, editItem, isEditing, setComment, comment, setCommentList, commentList, setIsEditing, editID, setEditID}) {
+function CommentLists({removeItem, items, editItem, isEditing, deleteCommentMessage, deleteCommentToggle}) {
 
 
 
@@ -18,6 +19,9 @@ function CommentLists({removeItem, items, editItem, isEditing, setComment, comme
                height="34px"
              />
              <span className="username">juliusomo</span>
+             <div className="you-container">
+               <span className="inside-you">you</span>
+             </div>
              <span className="comment-date">now</span>
            </div>
            <div className="content-box">
@@ -30,7 +34,9 @@ function CommentLists({removeItem, items, editItem, isEditing, setComment, comme
                  ></textarea>
                </form>
              ) : (
-               <span className="content">{comment}</span>
+               <div style={{overflow: 'auto'}}>
+                 <span className="content">{comment}</span>
+               </div>
              )}
            </div>
            <div className="comment-bottom">
@@ -40,20 +46,23 @@ function CommentLists({removeItem, items, editItem, isEditing, setComment, comme
                <img src="/images/icon-minus.svg" alt="" />
              </div>
              <div className="reply-container-btn">
-               <img
-                 src="/images/icon-delete.svg"
-                 alt=""
-                 onClick={() => removeItem(id)}
-               />
-               <span className="trash">Trash</span>
-               <img
-                 src="/images/icon-edit.svg"
-                 alt=""
-                 onClick={() => editItem(id)}
-               />
-               <span>Edit</span>
+               <section onClick={deleteCommentToggle}>
+                 <img src="/images/icon-delete.svg" alt="" />
+                 <span className="trash">Trash</span>
+               </section>
+               <section onClick={() => editItem(id)}>
+                 <img src="/images/icon-edit.svg" alt="" />
+                 <span>Edit</span>
+               </section>
              </div>
            </div>
+           {deleteCommentMessage && (
+             <DeleteCommentModal
+               deleteCommentToggle={deleteCommentToggle}
+               removeItem={removeItem}
+               id={id}
+             />
+           )}
          </div>
        );
      })}

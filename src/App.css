@@ -39,8 +39,26 @@ main{
 }
 
 .username{
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   font-weight: 500;
+}
+
+.you-container{
+  margin-right: 1rem;
+  background:  hsl(238, 40%, 52%);
+  color: white;
+  font-weight: 500;
+  width: 40px;
+  height: 20px;
+  border-radius: 0.2rem;
+}
+
+.inside-you{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+  width: 40px;
+  font-size: 15px;
 }
 
 .comment-date{
@@ -96,12 +114,21 @@ main{
   font-weight: 500;
 }
 
+.vote-counter img:hover{
+  cursor: pointer;
+}
+
 .reply-container-btn{
   display: flex;
   flex-direction: row;
   color: hsl(238, 40%, 52%);
   font-weight: 500;
 }
+
+.reply-container-btn div:hover{
+  opacity: 0.5;
+}
+
 
 .reply-container-btn section:hover{
   opacity: 0.5;

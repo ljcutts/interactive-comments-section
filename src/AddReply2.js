@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import data from "./data.json";
 
 function AddReply2({
@@ -24,6 +24,7 @@ function AddReply2({
     setReplys2("");
     setReplyButton2(false);
   };
+
 
   ///maybe add form to ReplySection instead of this file
 

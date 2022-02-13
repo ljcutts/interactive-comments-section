@@ -44,6 +44,9 @@ function ReplySection2({
                   height="34px"
                 />
                 <span className="username">juliusomo</span>
+                <div className="you-container">
+                  <span className="inside-you">you</span>
+                </div>
                 <span className="comment-date">now</span>
               </div>
               <div className="reply-content-box">
