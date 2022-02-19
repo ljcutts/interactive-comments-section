@@ -11,6 +11,11 @@ import "./App.css";
 import DeleteInitalCommentModal from "./DeleteInitalCommentModal";
 
 //edit functionality doesn't properly work, can't get line to act right
+//try to make the post date dynamic with Date
+//organize code files
+//clean up code and add documentation
+
+
 function App() {
   const getLocalStorage = () => {
     let commentLists = localStorage.getItem("commentLists");
@@ -20,6 +25,17 @@ function App() {
       return [];
     }
   };
+
+  // const timePassed = () => {
+  //   var time1 = new Date().getHours(); //"now"
+  //   var time2 = new Date(2022, 1, 19, 9, 23).getHours(); // some date
+  //   const timeDifference = Math.abs(time2 - time1);
+  //   console.log(timeDifference);
+  // };
+
+  // useEffect(() => { 
+  //   setInterval(timePassed, 3000);
+  // })
 
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState(getLocalStorage());
@@ -50,6 +66,7 @@ function App() {
        editRef.current.focus();
      }
    }, [editingInitial]);
+
 
   const upVote1 = () => {
     if (score1 !== 13) {
@@ -176,7 +193,6 @@ function App() {
     const specificItem = commentList.find((item) => item.id === id);
     setEditID(id);
     setComment(specificItem.comment);
-    // console.log(isEditing);
   };
 
   const handleSubmit = (e) => {
@@ -222,7 +238,7 @@ function App() {
                     className="img-container"
                     width="34px"
                     height="34px"
-                    alt='amyrobson'
+                    alt="amyrobson"
                   />
                   <span className="username">{username}</span>
                   <span className="comment-date">{createdAt}</span>
@@ -233,7 +249,8 @@ function App() {
                 <div className="comment-bottom">
                   <div className="vote-counter">
                     <img src="/images/icon-plus.svg" alt="" onClick={upVote1} />
-                    {score1}
+                    <span className="rotate-score">{score1}</span>
+
                     <img
                       src="/images/icon-minus.svg"
                       alt=""
@@ -283,15 +300,15 @@ function App() {
 
             const { png } = image;
             return (
-              <section key={index}>
-                <div className="comment-container">
+              <section>
+                <div className="comment-container" key={index}>
                   <div className="comment-top">
                     <img
                       src={png}
                       className="img-container"
                       width="34px"
                       height="34px"
-                      alt='maxblagun'
+                      alt="maxblagun"
                     />
                     <span className="username">{username}</span>
                     <span className="comment-date">{createdAt}</span>
@@ -306,7 +323,7 @@ function App() {
                         alt=""
                         onClick={upVote2}
                       />
-                      {score2}
+                      <span className="rotate-score">{score2}</span>
                       <img
                         src="/images/icon-minus.svg"
                         alt=""
@@ -335,12 +352,12 @@ function App() {
                 {replies
                   .filter((reply, index) => index === 0)
                   .map((reply) => {
-                    const { content, createdAt, user } = reply;
+                    const { content, createdAt, user, id } = reply;
                     const { image, username } = user;
                     const { png } = image;
                     return (
                       <>
-                        <section key={reply.id} className="reply-section">
+                        <section key={id} className="reply-section">
                           <div className="line-container-2">
                             <div className="line-2"></div>
                           </div>
@@ -351,7 +368,8 @@ function App() {
                                 className="img-container"
                                 width="34px"
                                 height="34px"
-                                alt="ramsesmiro"n
+                                alt="ramsesmiro"
+                                n
                               />
                               <span className="username">{username}</span>
                               <span className="comment-date">{createdAt}</span>
@@ -367,7 +385,7 @@ function App() {
                                   alt=""
                                   onClick={upVote3}
                                 />
-                                {score3}
+                                <span className="rotate-score">{score3}</span>
                                 <img
                                   src="/images/icon-minus.svg"
                                   alt=""
@@ -400,20 +418,23 @@ function App() {
                 {replies
                   .filter((reply, index) => index === 1)
                   .map((reply) => {
-                    const {createdAt, user, score } = reply;
+                    const { createdAt, user, score, id } = reply;
                     const { image, username } = user;
                     const { png } = image;
                     return (
                       <>
                         <section
-                          key={reply.id}
+                          key={id}
                           id="inital-reply"
                           className="reply-section"
                         >
                           <div className="line-container-2">
                             <div className="line-2"></div>
                           </div>
-                          <div className="reply-comment-container">
+                          <div
+                            className="reply-comment-container"
+                            id="initial-comment"
+                          >
                             <div className="comment-top">
                               <img
                                 src={png}
@@ -433,7 +454,6 @@ function App() {
                               {editingInitial ? (
                                 <textarea
                                   ref={editRef}
-                                  // className="content"
                                   id="inital-text-box"
                                   value={initialReply}
                                   onChange={(e) =>
@@ -442,23 +462,29 @@ function App() {
                                 ></textarea>
                               ) : (
                                 <textarea
-                                  disabled
+                                  readOnly
+                                  className="remove-focus"
                                   id="inital-text-box"
                                   value={initialReply}
                                   onChange={(e) =>
                                     setInitialReply(e.target.value)
                                   }
-                                >
-                                </textarea>
+                                ></textarea>
                               )}
                             </div>
                             <div className="comment-bottom">
-                              <div className="vote-counter">
+                              <div
+                                className="vote-counter"
+                                id="initial-vote-counter"
+                              >
                                 <img src="/images/icon-plus.svg" alt="" />
-                                {score}
+                                <span className="rotate-score">{score}</span>
                                 <img src="/images/icon-minus.svg" alt="" />
                               </div>
-                              <div className="reply-container-btn">
+                              <div
+                                className="reply-container-btn"
+                                id="inital-reply-btn"
+                              >
                                 {editingInitial ? (
                                   <button
                                     className="inital-button"
@@ -475,7 +501,7 @@ function App() {
                                         src="/images/icon-delete.svg"
                                         alt=""
                                       />
-                                      <span className="trash">Trash</span>
+                                      <span className="trash">Delete</span>
                                     </section>
                                     <section onClick={toggleEditing}>
                                       <img src="/images/icon-edit.svg" alt="" />
@@ -547,7 +573,7 @@ function App() {
             src="/images/avatars/image-juliusomo.png"
             width="34px"
             height="34px"
-            alt='juliusomo'
+            alt="juliusomo"
           />
           {updateComment ? (
             <button onClick={() => commentToggle(false)}>UPDATE</button>

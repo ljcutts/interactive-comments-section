@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import AddReply3 from "./AddReply3";
 import DeleteModal3 from "./DeleteModal3";
 
@@ -35,13 +35,14 @@ function ReplySection3({
             <div className="line-container">
               <div className="line"></div>
             </div>
-            <div className="reply-comment-container">
+            <div className="reply-comment-container" id="reply-container2">
               <div className="comment-top">
                 <img
                   src="/images/avatars/image-juliusomo.png"
                   className="img-container"
                   width="34px"
                   height="34px"
+                  alt='juliusomo'
                 />
                 <span className="username">juliusomo</span>
                 <div className="you-container">
@@ -53,16 +54,16 @@ function ReplySection3({
                 <span className="mention">@ramsesmiron</span>
                 <span className="content"> {replys3}</span>
               </div>
-              <div className="comment-bottom">
+              <div className="comment-bottom mobile-version" id="com-bot">
                 <div className="vote-counter">
                   <img src="/images/icon-plus.svg" alt="" />
-                  0
+                  <span className="rotate-score">0</span>
                   <img src="/images/icon-minus.svg" alt="" />
                 </div>
                 <div className="reply-container-btn">
                   <section onClick={deleteMessageToggle3}>
                     <img src="/images/icon-delete.svg" alt="" />
-                    <span className="trash">Trash</span>
+                    <span className="trash">Delete</span>
                   </section>
                   <section onClick={() => setEdit3({ id: id, value: replys3 })}>
                     <img src="/images/icon-edit.svg" alt="" />

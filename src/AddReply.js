@@ -17,14 +17,14 @@ function AddReply({
         id: new Date().getTime().toString(),
         replys: replys,
       });
-    }
-    e.preventDefault();
+    } else {
+       e.preventDefault();
       const newItem = { id: new Date().getTime().toString(), replys: replys };
       const newReply = [...replyList, newItem];
-      setReplyList(newReply);
-      console.log(replyList);
+    setReplyList(newReply);
     setReplys('');
     setReplyButton(false);
+    }
   };
 
   return (

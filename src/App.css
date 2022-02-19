@@ -10,7 +10,7 @@
 }
 
 body{
-  height: 1500px;
+  height: auto;
   background: hsl(223, 19%, 93%);
 }
 
@@ -161,6 +161,11 @@ main{
   padding-bottom: 1.2rem;
 }
 
+.mobile-version{
+  position: relative;
+  top: 1.8rem;
+}
+
 .reply-section{
   display: flex;
   justify-content: center;
@@ -211,7 +216,7 @@ main{
 
 #text-box{
   display: flex; 
-  border-radius: 0.7rem;
+  border-radius: 0.4rem;
   resize: none;
   width: 310px;
   height: 100px;
@@ -237,6 +242,12 @@ main{
   overflow:hidden;
   border-radius: 0.7rem;
 }
+
+
+
+.remove-focus:focus{
+  outline:none;
+} 
 
 .inital-button{
   background:hsl(238, 40%, 52%);
@@ -342,3 +353,130 @@ main{
 .second-btn{
   background: hsl(358, 79%, 66%);
 }
+
+@media only screen and (min-width: 768px) {
+  .comment-container{
+    width: 680px;
+    height: 165px;
+  }
+  .comment-top {
+    margin-left: 3rem;
+  }
+
+  .content-box{
+     margin-left: 3rem;
+     padding-top: 0.8rem;
+  }
+
+  .vote-counter{
+    position: relative;
+    bottom: 8rem;
+    transform: rotate(90deg);
+    right: 1.6rem;
+     padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 36px;
+  }
+  
+  .vote-counter img{
+    transform: rotate(90deg);
+   
+  }
+
+  .rotate-score{
+    transform: rotate(-90deg);
+  }
+
+  .reply-container-btn{
+    position: relative;
+    bottom: 9rem;
+  }
+
+  .reply-comment-container{
+     width: 630px;
+    height: 165px;
+  }
+
+  .reply-content-box{
+     margin-left: 3rem;
+     padding-top: 0.8rem;
+  }
+   
+  #inital-text-box{
+    width: 500px;
+    height: 80px;
+  }
+  
+  #initial-comment{
+    height: 180px;
+  }
+  
+  #initial-vote-counter{
+    bottom: 10rem;
+  }
+
+  #inital-reply-btn{
+    bottom: 11.3rem;
+  }
+
+  .line{
+    width: 30px;
+  }
+
+  .line-container{
+    width: 50px;
+  }
+
+  .line-container-2{
+    width: 50px;
+  }
+
+  .add-comment-container{
+    width: 680px;
+    height: 150px;
+  }
+
+  #text-box{
+    margin-left: 3rem;
+    width: 470px;
+  }
+  .comment-container-bottom{
+    position: relative;
+    bottom: 7rem;
+  }
+
+   .comment-container-bottom button{
+     margin-right: 0.5rem;
+   }
+
+   .add-reply-container{
+     width: 680px;
+     height: 150px;
+   }
+
+   #com-bot{
+     position: relative;
+     bottom: -3rem;
+   }
+
+   .reply-section{
+     height: 180px;
+   }
+
+   #reply-container{
+     height: 150px;
+     margin-bottom: 0.5rem;
+   }
+
+   #reply-container2{
+     height: 150px;
+     margin-bottom: 0.5rem;
+     margin-top: 1.5rem;
+   }
+
+   .mobile-version{
+  position: relative;
+  top: 3rem;
+}
+}
+

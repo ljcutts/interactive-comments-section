@@ -34,17 +34,16 @@ function ReplySection({
         return (
           <>
             <section className="reply-section" key={id}>
-              
-                <div className="line"></div>
-             
-              <div className="reply-comment-container">
+              <div className="line"></div>
+
+              <div className="reply-comment-container" id="reply-container">
                 <div className="comment-top">
                   <img
                     src="/images/avatars/image-juliusomo.png"
                     className="img-container"
                     width="34px"
                     height="34px"
-                    alt='juliusomo'
+                    alt="juliusomo"
                   />
                   <span className="username">juliusomo</span>
                   <div className="you-container">
@@ -56,16 +55,19 @@ function ReplySection({
                   <span className="mention">@amyrobson</span>
                   <span className="content"> {replys}</span>
                 </div>
-                <div className="comment-bottom">
+                <div
+                  className="comment-bottom"
+                  id="com-bot"
+                >
                   <div className="vote-counter">
                     <img src="/images/icon-plus.svg" alt="" />
-                    0
+                    <span className="rotate-score">0</span>
                     <img src="/images/icon-minus.svg" alt="" />
                   </div>
                   <div className="reply-container-btn">
                     <section onClick={deleteMessageToggle}>
                       <img src="/images/icon-delete.svg" alt="" />
-                      <span className="trash">Trash</span>
+                      <span className="trash">Delete</span>
                     </section>
                     <section onClick={() => setEdit({ id: id, value: replys })}>
                       <img src="/images/icon-edit.svg" alt="" />

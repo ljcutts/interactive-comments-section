@@ -16,13 +16,14 @@ function AddReply2({
         id: new Date().getTime().toString(),
         replys2: replys2,
       });
+    } else {
+     e.preventDefault();
+     const newItem2 = { id: new Date().getTime().toString(), replys2: replys2 };
+     const newReply2 = [...replyList2, newItem2];
+     setReplyList2(newReply2);
+     setReplys2("");
+     setReplyButton2(false);
     }
-    e.preventDefault();
-    const newItem2 = { id: new Date().getTime().toString(), replys2: replys2 };
-    const newReply2 = [...replyList2, newItem2];
-    setReplyList2(newReply2);
-    setReplys2("");
-    setReplyButton2(false);
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import DeleteCommentModal from './DeleteCommentModal';
 
 function CommentLists({removeItem, items, editItem, isEditing, deleteCommentMessage, deleteCommentToggle}) {
@@ -17,6 +17,7 @@ function CommentLists({removeItem, items, editItem, isEditing, deleteCommentMess
                className="img-container"
                width="34px"
                height="34px"
+               alt='juliusomo'
              />
              <span className="username">juliusomo</span>
              <div className="you-container">
@@ -34,21 +35,21 @@ function CommentLists({removeItem, items, editItem, isEditing, deleteCommentMess
                  ></textarea>
                </form>
              ) : (
-               <div style={{overflow: 'auto'}}>
+               <div style={{ overflow: "auto" }}>
                  <span className="content">{comment}</span>
                </div>
              )}
            </div>
-           <div className="comment-bottom">
+           <div className="comment-bottom" id="com-bot">
              <div className="vote-counter">
                <img src="/images/icon-plus.svg" alt="" />
-               0
+               <span className='rotate-score'>0</span>
                <img src="/images/icon-minus.svg" alt="" />
              </div>
              <div className="reply-container-btn">
                <section onClick={deleteCommentToggle}>
                  <img src="/images/icon-delete.svg" alt="" />
-                 <span className="trash">Trash</span>
+                 <span className="trash">Delete</span>
                </section>
                <section onClick={() => editItem(id)}>
                  <img src="/images/icon-edit.svg" alt="" />
