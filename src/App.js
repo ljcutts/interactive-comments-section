@@ -10,12 +10,6 @@ import ReplySection3 from "./components/Array3/ReplySection3";
 import "./App.css";
 import DeleteInitalCommentModal from "./DeleteInitalCommentModal";
 
-//edit functionality doesn't properly work, can't get line to act right, haven't tried to make the post date dynamic with Date
-//feel like code is redundant
-
-
-
-
 function App() {
   const getLocalStorage = () => {
     let commentLists = localStorage.getItem("commentLists");
@@ -25,17 +19,6 @@ function App() {
       return [];
     }
   };
-
-  // const timePassed = () => {
-  //   var time1 = new Date().getHours(); //"now"
-  //   var time2 = new Date(2022, 1, 19, 9, 23).getHours(); // some date
-  //   const timeDifference = Math.abs(time2 - time1);
-  //   console.log(timeDifference);
-  // };
-
-  // useEffect(() => {
-  //   setInterval(timePassed, 3000);
-  // })
 
   const [comment, setComment] = useState(""); //Allows you to update juliusomo/you to initialize and update your comments
   const [commentList, setCommentList] = useState(getLocalStorage()); //sets your comments in an array in local storage
