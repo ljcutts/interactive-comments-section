@@ -212,24 +212,33 @@ function App() {
 
   //function to submit the comment whether it's a new comment or an edited one
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (comment && isEditing) {
-      setCommentList(
-        commentList.map((item) => {
-          if (item.id === editID) {
-            return { ...item, comment: comment };
-          }
-          return item;
-        })
-      );
-      setComment("");
-      setEditID(null);
-      setIsEditing(false);
+    if (comment === "") {
+      e.preventDefault();
+      return;
     } else {
-      const newItem = { id: new Date().getTime().toString(), comment: comment };
-      setCommentList([...commentList, newItem]);
-      setComment("");
+       e.preventDefault();
+       if (comment && isEditing) {
+         setCommentList(
+           commentList.map((item) => {
+             if (item.id === editID) {
+               return { ...item, comment: comment };
+             }
+             return item;
+           })
+         );
+         setComment("");
+         setEditID(null);
+         setIsEditing(false);
+       } else {
+         const newItem = {
+           id: new Date().getTime().toString(),
+           comment: comment,
+         };
+         setCommentList([...commentList, newItem]);
+         setComment("");
+       }
     }
+   
   };
 
 
