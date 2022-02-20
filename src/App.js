@@ -257,7 +257,7 @@ function App() {
 
   return (
     <main>
-      {/* mapping the first comment */}
+      {/* mapping of the first comment */}
       <section>
         {comments
           .filter((comment, index) => index === 0)

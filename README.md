@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Frontend Mentor - Interactive comments section solution
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Overview
+This is my 6th Frontend Mentor Project
 
-### `npm test`
+### The challenge
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users should be able to:
 
-### `npm run build`
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Create, Read, Update, and Delete comments and replies
+- Upvote and downvote comments
+- **Bonus**: If you're building a purely front-end project, use `localStorage` to save the current state in the browser that persists when the browser is refreshed.
+- **Bonus**: Instead of using the `createdAt` strings from the `data.json` file, try using timestamps and dynamically track the time since the comment or reply was posted.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Links
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-### `npm run eject`
+## My process
+I first mapped out the data in the json file that contained the initial replies and comments. Then I styled them. I then went on to make the 'add a comment' box at the bottom and styled this. Once I built the initial setup of the app, I started to work on the functionality more. I made it so that the user can add, update, edit, and delete comments/replies using useState and localStorage. I made different components that were dedicated to editing comments/replies and for the delete message modal.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Built with
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### What I learned
 
-## Learn More
+I learned a lot from this project because it was much much harder than I expected. I learned how to display data from a json file. I have a much better understanding of how CRUD apps work on the frontend side. I have more knowledge as to what useState React hooks are capable of and understand a more as to how to manipulate arrays with React Hooks and Vanilla Javascript. I wrote some code for manipulating the date of comments and replies, but didn't really get to it.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+const timePassed = () => {
+    var time1 = new Date().getHours(); //"now"
+    var time2 = new Date(2022, 1, 19, 9, 23).getHours(); // some date
+    const timeDifference = Math.abs(time2 - time1);
+    console.log(timeDifference);
+  };
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  useEffect(() => {
+    setInterval(timePassed, 3000);
+  })
+```
 
-### Code Splitting
+### Continued development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+I want to continue getting better at making CRUD apps, using map and other Javascript methods to render data from json files, and I want to learn how to make my code less redundant.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Useful resources
 
-### Making a Progressive Web App
+- [w3schools](https://www.w3schools.com) - Dictionary and reference for HTML, CSS, and Javascript.
+- [Reactgo](https://reactgo.com/javascript-remove-html-element/) - Helped to learn how to remove an HTML element
+- [Limit Items In Map](https://stackoverflow.com/questions/42374873/limit-items-in-a-map-loop/42374933) - Helped to learn how to render specific indexed in a map
+- [Multi-dimensional Array](https://www.pluralsight.com/guides/display-multidimensional-array-data-in-react) - Helped to better understand how to access different parts of an array in a json file
+- [Active Input Focus On Render In React](https://stackoverflow.com/questions/53314857/how-to-focus-something-on-next-render-with-react-hooks) - Helped to learn how to use useRef and useEffect to activate focus on an input/textarea.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Author
 
-### Deployment
+- Frontend Mentor - [@ljcutts](https://www.frontendmentor.io/profile/ljcutts)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Coding Addict & Brian Codex
+
