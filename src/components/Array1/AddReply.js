@@ -14,19 +14,24 @@ function AddReply({
 
   // function that handles the submission of replies for the first array list
   const handleSubmit = (e) => {
-    if (edit) {
-      submitUpdate({
-        id: new Date().getTime().toString(),
-        replys: replys,
-      });
-    } else {
+    if(replys === '') {
       e.preventDefault();
-      const newItem = { id: new Date().getTime().toString(), replys: replys };
-      const newReply = [...replyList, newItem];
-      setReplyList(newReply);
-      setReplys("");
-      setReplyButton(false);
-    }
+     return;
+    } else {
+      if (edit) {
+        submitUpdate({
+          id: new Date().getTime().toString(),
+          replys: replys,
+        });
+      } else {
+        e.preventDefault();
+        const newItem = { id: new Date().getTime().toString(), replys: replys };
+        const newReply = [...replyList, newItem];
+        setReplyList(newReply);
+        setReplys("");
+        setReplyButton(false);
+      }
+    }  
   };
 
   return (

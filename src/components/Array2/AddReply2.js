@@ -13,22 +13,27 @@ function AddReply2({
 
   // function that handles the submission of replies for the second array list
   const handleSubmit = (e) => {
-    if (edit2) {
-      submitUpdate2({
-        id: new Date().getTime().toString(),
-        replys2: replys2,
-      });
-    } else {
+    if(replys2 === '') {
       e.preventDefault();
-      const newItem2 = {
-        id: new Date().getTime().toString(),
-        replys2: replys2,
-      };
-      const newReply2 = [...replyList2, newItem2];
-      setReplyList2(newReply2);
-      setReplys2("");
-      setReplyButton2(false);
-    }
+     return;
+    } else {
+      if (edit2) {
+        submitUpdate2({
+          id: new Date().getTime().toString(),
+          replys2: replys2,
+        });
+      } else {
+        e.preventDefault();
+        const newItem2 = {
+          id: new Date().getTime().toString(),
+          replys2: replys2,
+        };
+        const newReply2 = [...replyList2, newItem2];
+        setReplyList2(newReply2);
+        setReplys2("");
+        setReplyButton2(false);
+      }
+    }  
   };
 
   return (

@@ -7,7 +7,7 @@ function CommentLists({removeItem, items, editItem, isEditing, deleteCommentMess
 
   return (
     <section>
-      {/* mapping of the comments array */}
+      {/* The mapping of the comments array */}
       {items.map((item) => {
         const {id, comment} = item
        return (
