@@ -10,13 +10,20 @@
 }
 
 body{
-  height: 1500px;
+  height: auto;
   background: hsl(223, 19%, 93%);
 }
 
 main{
   margin-top: 2.5rem;
 }
+
+
+/*
+===================== 
+Inital Messages Boxes
+=====================
+*/
 
 .comment-container{
   margin: 0 auto;
@@ -26,7 +33,7 @@ main{
   margin-top: 1.3rem;
   padding: 1.2rem;
   background: white;
-  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .comment-top{
@@ -39,8 +46,33 @@ main{
 }
 
 .username{
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   font-weight: 500;
+}
+
+.comment-bottom{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  align-items: center;
+}
+
+.you-container{
+  margin-right: 1rem;
+  background:  hsl(238, 40%, 52%);
+  color: white;
+  font-weight: 500;
+  width: 40px;
+  height: 20px;
+  border-radius: 0.2rem;
+}
+
+.inside-you{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 40px;
+ font-size: 15px;
 }
 
 .comment-date{
@@ -54,10 +86,19 @@ main{
   line-height: 1.5rem;
 }
 
+/*
+===================== 
+Reply Messages Boxes
+=====================
+*/
+
+
 .reply-content-box{
    padding-top: 1.2rem;
   padding-bottom: 1rem;
   line-height: 1.5rem;
+  height: auto;
+  overflow: auto;
 }
 
 .mention{
@@ -66,37 +107,26 @@ main{
 }
 
  
-
 .content{
    opacity: 0.5;
 }
 
-.comment-bottom{
-  display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  align-items: center;
-}
-
-.vote-counter{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 30px;
-  width: 75px;
-  background: red;
-  border-radius: 0.5rem;
-  text-align: center;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  background: hsl(223, 19%, 93%);
-  color: hsl(238, 40%, 52%);
-  font-weight: 500;
-}
 
 .reply-container-btn{
+  display: flex;
+  flex-direction: row;
   color: hsl(238, 40%, 52%);
   font-weight: 500;
+}
+
+.reply-container-btn div:hover{
+  opacity: 0.5;
+}
+
+
+.reply-container-btn section:hover{
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .reply-container-btn img{
@@ -118,10 +148,15 @@ main{
   width: 320px;
   height: auto;
   border-radius: 0.8rem;
-  margin-top: 1.3rem;
+  margin-bottom: 1.3rem;
   padding: 1.2rem;
   background: white;
   padding-bottom: 1.2rem;
+}
+
+.mobile-version{
+  position: relative;
+  top: 1.8rem;
 }
 
 .reply-section{
@@ -129,38 +164,12 @@ main{
   justify-content: center;
 }
 
-.line-container{
-  display: flex;
-  flex-direction: column;
- width: 20px;
-  height: 50px;
-  margin-top: 1.3rem;
-  height: 289.56px;
-}
 
-.line{
-  width: 1.5px;
-  height: 289.56px;
-  background: black;
-  opacity: 0.1;
-}
-
-.line-container-2{
-  display: flex;
-  flex-direction: column;
- width: 20px;
-  height: 50px;
-  
-  height: 309.56px;
-}
-
-
-.line-2{
-  width: 1.5px;
-  height: 309.56px;
-  background: black;
-  opacity: 0.1;
-}
+/*
+===================== 
+Add-Comment-Form
+=====================
+*/
 
 .add-comment-container{
   margin: 0 auto;
@@ -173,7 +182,8 @@ main{
 }
 
 #text-box{
-  display: flex; border-radius: 0.7rem;
+  display: flex; 
+  border-radius: 0.4rem;
   resize: none;
   width: 310px;
   height: 100px;
@@ -191,6 +201,10 @@ main{
   justify-content: space-between;
 }
 
+.comment-container-bottom button:hover{
+  opacity: 0.5;
+}
+
 .comment-container-bottom button {
   background:hsl(238, 40%, 52%);
   width: 90px;
@@ -200,4 +214,325 @@ main{
   color: white;
   font-weight: 600;
   font-size: 15px;
+  cursor: pointer;
 }
+
+
+
+#inital-text-box{
+  resize: none;
+  width: 270px;
+  height: 125px;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  font-weight: 400;
+  color: rgba(0,0,0,0.5);
+  font-size: 16px;
+  border: none;
+  background: white;
+  overflow:hidden;
+  border-radius: 0.7rem;
+}
+
+
+/*
+===================== 
+Inital Reply 
+=====================
+*/
+
+.remove-focus:focus{
+  outline:none;
+} 
+
+.inital-button{
+  background:hsl(238, 40%, 52%);
+  width: 90px;
+  height: 45px;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/*
+===================== 
+Add Reply Container
+=====================
+*/
+
+
+.add-reply-container{
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  height: 185px;
+  width: 340px;
+  background: white;
+  border-radius: 0.7rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+/*
+===================== 
+Delete Modal
+=====================
+*/
+
+.delete-container{
+  position: fixed;
+  top: 0rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  z-index: 999;
+  place-items: center;
+}
+
+.delete-box{
+  height: 200px;
+  width: 345px;
+  background: white;
+  border-radius: 0.8rem;
+  padding: 2rem;
+}
+
+.delete-box h1{
+  font-size: 20px;
+  font-weight: 600;
+  padding-bottom: 1rem;
+}
+
+.delete-box span{
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.btn-container{
+  display: flex;
+  padding-top: 1.3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container button{
+  height: 30px;
+  width: 170px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  color: white;
+  font-weight: 600;
+}
+
+
+.first-btn{
+  margin-right: 0.5rem;
+  background: gray;
+}
+
+.first-btn:hover, .second-btn:hover{
+  opacity: 0.5;
+}
+
+.second-btn{
+  background: hsl(358, 79%, 66%);
+}
+
+
+
+/*
+===================== 
+Reply Line
+=====================
+*/
+
+.line-container{
+  width: 20px;
+  margin-top: 1.3rem;
+  height: 194px;
+}
+
+.line{
+  position: relative;
+  top: 0.1rem;
+  width: 1.5px;
+ height: 193px;
+  background: black;
+  opacity: 0.1;
+  margin-right: 1rem;
+  visibility: hidden;
+}
+
+.line-container-2{
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+}
+
+
+.line-2{
+  width: 1.5px;
+  background: black;
+  opacity: 0.1;
+}
+
+ /*
+===================== 
+Vote/Score Container
+=====================
+*/
+
+.vote-counter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  width: 75px;
+  background: red;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background: hsl(223, 19%, 93%);
+  color: hsl(238, 40%, 52%);
+  font-weight: 500;
+}
+
+.vote-counter img:hover{
+  cursor: pointer;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .comment-container{
+    width: 680px;
+    height: 165px;
+  }
+  .comment-top {
+    margin-left: 3rem;
+  }
+
+  .content-box{
+     margin-left: 3rem;
+     padding-top: 0.8rem;
+  }
+
+  .vote-counter{
+    position: relative;
+    bottom: 8rem;
+    transform: rotate(90deg);
+    right: 1.6rem;
+     padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 36px;
+  }
+  
+  .vote-counter img{
+    transform: rotate(90deg);
+   
+  }
+
+  .rotate-score{
+    transform: rotate(-90deg);
+  }
+
+  .reply-container-btn{
+    position: relative;
+    bottom: 9rem;
+  }
+
+  .reply-comment-container{
+     width: 630px;
+    height: 165px;
+  }
+
+  .reply-content-box{
+     margin-left: 3rem;
+     padding-top: 0.8rem;
+  }
+   
+  #inital-text-box{
+    width: 500px;
+    height: 80px;
+  }
+  
+  #initial-comment{
+    height: 180px;
+  }
+  
+  #initial-vote-counter{
+    bottom: 10rem;
+  }
+
+  #inital-reply-btn{
+    bottom: 11.3rem;
+  }
+
+  .line{
+    width: 30px;
+  }
+
+  .line-container{
+    width: 50px;
+  }
+
+  .line-container-2{
+    width: 50px;
+  }
+
+  .add-comment-container{
+    width: 680px;
+    height: 150px;
+  }
+
+  #text-box{
+    margin-left: 3rem;
+    width: 470px;
+  }
+  .comment-container-bottom{
+    position: relative;
+    bottom: 7rem;
+  }
+
+   .comment-container-bottom button{
+     margin-right: 0.5rem;
+   }
+
+   .add-reply-container{
+     width: 680px;
+     height: 150px;
+   }
+
+   #com-bot{
+     position: relative;
+     bottom: -3rem;
+   }
+
+   .reply-section{
+     height: 180px;
+   }
+
+   #reply-container{
+     height: 150px;
+     margin-bottom: 0.5rem;
+   }
+
+   #reply-container2{
+     height: 150px;
+     margin-bottom: 0.5rem;
+     margin-top: 1.5rem;
+   }
+
+   .mobile-version{
+  position: relative;
+  top: 3rem;
+}
+}
+
