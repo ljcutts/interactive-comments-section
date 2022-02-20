@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [App](https://ljcutts-interactive-comments-section.netlify.app/)
+- Solution URL: (https://www.frontendmentor.io/solutions/interactivecommentssection-using-react-and-local-storage-xvymR0QNO)
+- Live Site URL: (https://ljcutts-interactive-comments-section.netlify.app/)
 
 ## My process
 I first mapped out the data in the json file that contained the initial replies and comments. Then I styled them. I then went on to make the 'add a comment' box at the bottom and styled this. Once I built the initial setup of the app, I started to work on the functionality more. I made it so that the user can add, update, edit, and delete comments/replies using useState and localStorage. I made different components that were dedicated to editing comments/replies and for the delete message modal.
