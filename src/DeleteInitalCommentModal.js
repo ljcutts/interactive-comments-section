@@ -13,9 +13,11 @@ function DeleteInitalCommentModal({
           comment and can't be undone.
         </span>
         <div className="btn-container">
+          {/* removes the delete message */}
           <button className="first-btn" onClick={deleteInitialCommentToggle}>
             NO, CANCEL
           </button>
+          {/* deletes inital reply */}
           <button className="second-btn" onClick={removeInitialReply}>
             YES, DELETE
           </button>

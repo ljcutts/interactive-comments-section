@@ -9,11 +9,13 @@ function ReplySection({
   deleteMessageToggle,
   deleteMessage
 }) {
+  // helps set the id and reply value that is being edited
   const [edit, setEdit] = useState({
     id: null,
     value: "",
   });
 
+  //function to update the reply that is being edited
   const submitUpdate = (value) => {
     updateReply(edit.id, value);
     setEdit({
@@ -22,12 +24,13 @@ function ReplySection({
     });
   };
 
-
+// only renders the reply container when reply is being edited
   if (edit.id) {
     return <AddReply edit={edit} submitUpdate={submitUpdate} />;
   }
 
   return (
+    // mapping of all the replies in the first reply array
     <section>
       {replyList.map((replies) => {
         const { id, replys } = replies;
@@ -76,6 +79,7 @@ function ReplySection({
                   </div>
                 </div>
               </div>
+              {/* modal for the delete message */}
               {deleteMessage && (
                 <DeleteModal
                   deleteMessageToggle={deleteMessageToggle}

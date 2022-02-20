@@ -9,11 +9,13 @@ function ReplySection2({
   deleteMessageToggle2,
   deleteMessage2,
 }) {
+  // helps set the id and reply value that is being edited
   const [edit2, setEdit2] = useState({
     id: null,
     value: "",
   });
 
+  //function to update the reply that is being edited
   const submitUpdate2 = (value) => {
     updateReply2(edit2.id, value);
     setEdit2({
@@ -22,11 +24,13 @@ function ReplySection2({
     });
   };
 
+  // only renders the reply container when reply is being edited
   if (edit2.id) {
     return <AddReply2 edit2={edit2} submitUpdate2={submitUpdate2} />;
   }
 
   return (
+    // mapping of all the replies in the second reply array
     <section>
       {replyList2.map((replies) => {
         const { id, replys2 } = replies;
@@ -42,7 +46,7 @@ function ReplySection2({
                   className="img-container"
                   width="34px"
                   height="34px"
-                  alt='juliusomo'
+                  alt="juliusomo"
                 />
                 <span className="username">juliusomo</span>
                 <div className="you-container">
@@ -72,6 +76,7 @@ function ReplySection2({
                 </div>
               </div>
             </div>
+            {/* modal for the delete message */}
             {deleteMessage2 && (
               <DeleteModal2
                 deleteMessageToggle2={deleteMessageToggle2}

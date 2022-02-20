@@ -1,6 +1,6 @@
 import React from "react";
 
-function DeleteCommentModal({ removeItem, deleteCommentToggle, id }) {
+function DeleteModal2({ removeReply2, deleteMessageToggle2, id }) {
   return (
     <div className="delete-container">
       <div className="delete-box">
@@ -10,10 +10,12 @@ function DeleteCommentModal({ removeItem, deleteCommentToggle, id }) {
           comment and can't be undone.
         </span>
         <div className="btn-container">
-          <button className="first-btn" onClick={deleteCommentToggle}>
+          {/* remove delete message */}
+          <button className="first-btn" onClick={deleteMessageToggle2}>
             NO, CANCEL
           </button>
-          <button className="second-btn" onClick={() => removeItem(id)}>
+          {/* deletes reply from second reply array */}
+          <button className="second-btn" onClick={() => removeReply2(id)}>
             YES, DELETE
           </button>
         </div>
@@ -22,4 +24,6 @@ function DeleteCommentModal({ removeItem, deleteCommentToggle, id }) {
   );
 }
 
-export default DeleteCommentModal;
+export default DeleteModal2;
+
+//ª

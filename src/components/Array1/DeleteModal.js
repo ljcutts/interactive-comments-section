@@ -11,7 +11,9 @@ function DeleteModal({removeReply, deleteMessageToggle, id}) {
           comment and can't be undone.
         </span>
         <div className="btn-container">
+          {/* remove delete message */}
           <button className="first-btn" onClick={deleteMessageToggle}>NO, CANCEL</button>
+          {/* deletes reply from first reply array */}
           <button className="second-btn" onClick={() => removeReply(id)}>
             YES, DELETE
           </button>

@@ -7,9 +7,10 @@ function AddReply3({
   edit3,
   submitUpdate3,
 }) {
- 
+  // helps to initialize and edit replys
   const [replys3, setReplys3] = useState(edit3 ? edit3.value : "");
 
+  // function that handles the submission of replies for the third array list
   const handleSubmit = (e) => {
     if (edit3) {
       submitUpdate3({
@@ -17,20 +18,20 @@ function AddReply3({
         replys3: replys3,
       });
     } else {
-        e.preventDefault();
-        const newItem3 = {
-          id: new Date().getTime().toString(),
-          replys3: replys3,
-        };
-        const newReply3 = [...replyList3, newItem3];
-        setReplyList3(newReply3);
-        setReplys3("");
-        setReplyButton3(false);
-      }  
+      e.preventDefault();
+      const newItem3 = {
+        id: new Date().getTime().toString(),
+        replys3: replys3,
+      };
+      const newReply3 = [...replyList3, newItem3];
+      setReplyList3(newReply3);
+      setReplys3("");
+      setReplyButton3(false);
+    }
   };
 
-
   return (
+    // form to edit or submit replies in the third reply array
     <form className="add-reply-container" onSubmit={handleSubmit}>
       {edit3 ? (
         <>
@@ -46,7 +47,7 @@ function AddReply3({
               src="/images/avatars/image-juliusomo.png"
               width="34px"
               height="34px"
-              alt='juliusomo'
+              alt="juliusomo"
             />
             <button>UPDATE</button>
           </div>
@@ -65,7 +66,7 @@ function AddReply3({
               src="/images/avatars/image-juliusomo.png"
               width="34px"
               height="34px"
-              alt='juliusomo'
+              alt="juliusomo"
             />
             <button>REPLY</button>
           </div>

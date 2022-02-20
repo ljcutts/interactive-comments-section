@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import data from "./data.json";
-import AddReply from "./AddReply";
-import CommentLists from "./CommentLists";
-import ReplySection from "./ReplySection";
-import AddReply2 from "./AddReply2";
-import AddReply3 from "./AddReply3";
-import ReplySection2 from "./ReplySection2";
-import ReplySection3 from "./ReplySection3";
+import AddReply from "./components/Array1/AddReply";
+import CommentLists from "./components/Commenting/CommentLists"
+import ReplySection from "./components/Array1/ReplySection";
+import AddReply2 from "./components/Array2/AddReply2";
+import AddReply3 from "./components/Array3/AddReply3";
+import ReplySection2 from "./components/Array2/ReplySection2";
+import ReplySection3 from "./components/Array3/ReplySection3";
 import "./App.css";
 import DeleteInitalCommentModal from "./DeleteInitalCommentModal";
 
-//edit functionality doesn't properly work, can't get line to act right
-//try to make the post date dynamic with Date
-//organize code files
-//clean up code and add documentation
+//edit functionality doesn't properly work, can't get line to act right, haven't tried to make the post date dynamic with Date
+//feel like code is redundant
+
+
 
 
 function App() {
@@ -33,41 +33,61 @@ function App() {
   //   console.log(timeDifference);
   // };
 
-  // useEffect(() => { 
+  // useEffect(() => {
   //   setInterval(timePassed, 3000);
   // })
 
-  const [comment, setComment] = useState("");
-  const [commentList, setCommentList] = useState(getLocalStorage());
-  const [editID, setEditID] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingInitial, setEditingInital] = useState(false);
+  const [comment, setComment] = useState(""); //Allows you to update juliusomo/you to initialize and update your comments
+  const [commentList, setCommentList] = useState(getLocalStorage()); //sets your comments in an array in local storage
+  const [editID, setEditID] = useState(null); //helps to see if the id of your comment is the id being edited
+  const [isEditing, setIsEditing] = useState(false); //toggles the editing modal for comments
+  const [editingInitial, setEditingInital] = useState(false); //toggles the editing modal for initial comment by 'you'/juliusomo
+
+  //These message useState toggle the message modal of whether or not you want to delete your reply
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [deleteMessage2, setDeleteMessage2] = useState(false);
   const [deleteMessage3, setDeleteMessage3] = useState(false);
   const [deleteCommentMessage, setDeleteCommentMessage] = useState(false);
-  const [deleteInitialCommentMessage, setDeleteInitialCommentMessage] = useState(false);
+  const [deleteInitialCommentMessage, setDeleteInitialCommentMessage] =
+    useState(false);
+
+  //useState to add and delete replys in an array
   const [replyList, setReplyList] = useState([]);
   const [replyList2, setReplyList2] = useState([]);
   const [replyList3, setReplyList3] = useState([]);
+
+  //These toggle the reply containers to add a reply under the comments
   const [replyButton, setReplyButton] = useState(false);
   const [replyButton2, setReplyButton2] = useState(false);
   const [replyButton3, setReplyButton3] = useState(false);
+
+  //toggles the modal of updating the comments by you/juliusomo
   const [updateComment, setUpdateComment] = useState(false);
+
+  //The scores for the comments other than you/juliusomo
   const [score1, setScore1] = useState(12);
   const [score2, setScore2] = useState(5);
   const [score3, setScore3] = useState(4);
-  const [initialReply, setInitialReply] = useState(`I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.`)
+
+  //updates and initializes the first reply from juliusomo/you
+  const [initialReply, setInitialReply] = useState(
+    `I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.`
+  );
+
+  //desconstruct json file to grab comments object
   const { comments } = data;
+
+  // ref for textarea of the inital reply by you/juliusomo
   const editRef = useRef(null);
 
-   useEffect(() => {
-     if (editingInitial) {
-       editRef.current.focus();
-     }
-   }, [editingInitial]);
+  //highlights the textarea of the initial reply by you/juliusomo
+  useEffect(() => {
+    if (editingInitial) {
+      editRef.current.focus();
+    }
+  }, [editingInitial]);
 
-
+  //increments the initial comments and replies by others except juliusomo
   const upVote1 = () => {
     if (score1 !== 13) {
       setScore1(score1 + 1);
@@ -86,6 +106,7 @@ function App() {
     }
   };
 
+  //decrements the initial comments and replies by others except juliusomo
   const downVote1 = () => {
     if (score1 === 13) {
       setScore1(score1 - 1);
@@ -104,6 +125,8 @@ function App() {
     }
   };
 
+
+ //functions to toggle the reply container
   const openReplyBox = () => {
     setReplyButton(!replyButton);
   };
@@ -116,6 +139,8 @@ function App() {
     setReplyButton3(!replyButton3);
   };
 
+
+//functions to edit replys
   const updateReply = (replyId, newValue) => {
     setReplyList((prev) =>
       prev.map((item) => (item.id === replyId ? newValue : item))
@@ -134,11 +159,13 @@ function App() {
     );
   };
 
+  //deletes comment
   const removeItem = (id) => {
     setCommentList(commentList.filter((item) => item.id !== id));
     setDeleteCommentMessage(false);
   };
 
+//function that toggles delete messages
   const deleteMessageToggle = () => {
     setDeleteMessage(!deleteMessage);
   };
@@ -159,10 +186,13 @@ function App() {
     setDeleteInitialCommentMessage(!deleteInitialCommentMessage);
   };
 
+  //function to toggle the editing container for comments
   const commentToggle = (bool) => {
     setUpdateComment(bool);
   };
 
+
+//functions that remove reply based on id
   const removeReply = (id) => {
     const removedArr = replyList.filter((replies) => replies.id !== id);
     setReplyList(removedArr);
@@ -187,6 +217,8 @@ function App() {
     setDeleteMessage3(false);
   };
 
+
+//function to push updated comment
   const editItem = (id) => {
     setUpdateComment(true);
     setIsEditing(true);
@@ -195,6 +227,7 @@ function App() {
     setComment(specificItem.comment);
   };
 
+  //function to submit the comment whether it's a new comment or an edited one
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment && isEditing) {
@@ -216,12 +249,15 @@ function App() {
     }
   };
 
+
+  //function to toggle the textarea for updating the initial reply by juliusomo/you
   const toggleEditing = () => {
     setEditingInital(!editingInitial);
   };
 
   return (
     <main>
+      {/* mapping the first comment */}
       <section>
         {comments
           .filter((comment, index) => index === 0)
@@ -273,6 +309,7 @@ function App() {
               </div>
             );
           })}
+        {/* reply array list that replies to the first comment */}
         {replyList.length > 0 && (
           <ReplySection
             replyList={replyList}
@@ -283,6 +320,7 @@ function App() {
             removeReply={removeReply}
           />
         )}
+        {/* reply container for the first array list */}
         {replyButton && (
           <AddReply
             replyList={replyList}
@@ -291,6 +329,7 @@ function App() {
           />
         )}
       </section>
+      {/* mapping of the second comment */}
       <section>
         {comments
           .filter((comment, index) => index === 1)
@@ -342,6 +381,7 @@ function App() {
                     </div>
                   </div>
                 </div>
+                {/* reply container for the second array list */}
                 {replyButton2 && (
                   <AddReply2
                     replyList2={replyList2}
@@ -349,6 +389,7 @@ function App() {
                     setReplyButton2={setReplyButton2}
                   />
                 )}
+                {/* mapping of the first reply */}
                 {replies
                   .filter((reply, index) => index === 0)
                   .map((reply) => {
@@ -408,6 +449,7 @@ function App() {
                       </>
                     );
                   })}
+                {/* reply container for the third array list */}
                 {replyButton3 && (
                   <AddReply3
                     replyList3={replyList3}
@@ -415,6 +457,7 @@ function App() {
                     setReplyButton3={setReplyButton3}
                   />
                 )}
+                {/* mapping of the second reply */}
                 {replies
                   .filter((reply, index) => index === 1)
                   .map((reply) => {
@@ -512,6 +555,7 @@ function App() {
                               </div>
                             </div>
                           </div>
+                          {/* delete modal for the initial comment by juliusomo/you */}
                           {deleteInitialCommentMessage && (
                             <DeleteInitalCommentModal
                               deleteInitialCommentToggle={
@@ -527,6 +571,7 @@ function App() {
               </section>
             );
           })}
+        {/* reply array list that replies to the second comment */}
         {replyList2.length > 0 && (
           <ReplySection2
             replyList2={replyList2}
@@ -537,6 +582,7 @@ function App() {
             deleteMessage2={deleteMessage2}
           />
         )}
+        {/* reply array list that replies to the third comment */}
         {replyList3.length > 0 && (
           <ReplySection3
             replyList3={replyList3}
@@ -548,6 +594,7 @@ function App() {
           />
         )}
       </section>
+      {/* comment array list */}
       {CommentLists.length > 0 && updateComment === false ? (
         <CommentLists
           items={commentList}
@@ -560,6 +607,7 @@ function App() {
       ) : (
         ""
       )}
+      {/* form to add and submit a new comment */}
       <form className="add-comment-container" onSubmit={handleSubmit}>
         <textarea
           name=""

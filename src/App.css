@@ -18,6 +18,13 @@ main{
   margin-top: 2.5rem;
 }
 
+
+/*
+===================== 
+Inital Messages Boxes
+=====================
+*/
+
 .comment-container{
   margin: 0 auto;
   width: 340px;
@@ -26,7 +33,6 @@ main{
   margin-top: 1.3rem;
   padding: 1.2rem;
   background: white;
-  padding-bottom: 1.2rem;
   margin-bottom: 1.5rem;
 }
 
@@ -44,6 +50,13 @@ main{
   font-weight: 500;
 }
 
+.comment-bottom{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  align-items: center;
+}
+
 .you-container{
   margin-right: 1rem;
   background:  hsl(238, 40%, 52%);
@@ -58,8 +71,8 @@ main{
  display: flex;
  align-items: center;
  justify-content: center;
-  width: 40px;
-  font-size: 15px;
+ width: 40px;
+ font-size: 15px;
 }
 
 .comment-date{
@@ -72,6 +85,13 @@ main{
   padding-bottom: 1rem;
   line-height: 1.5rem;
 }
+
+/*
+===================== 
+Reply Messages Boxes
+=====================
+*/
+
 
 .reply-content-box{
    padding-top: 1.2rem;
@@ -87,37 +107,10 @@ main{
 }
 
  
-
 .content{
    opacity: 0.5;
 }
 
-.comment-bottom{
-  display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  align-items: center;
-}
-
-.vote-counter{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 30px;
-  width: 75px;
-  background: red;
-  border-radius: 0.5rem;
-  text-align: center;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  background: hsl(223, 19%, 93%);
-  color: hsl(238, 40%, 52%);
-  font-weight: 500;
-}
-
-.vote-counter img:hover{
-  cursor: pointer;
-}
 
 .reply-container-btn{
   display: flex;
@@ -171,38 +164,12 @@ main{
   justify-content: center;
 }
 
-.line-container{
- 
-  width: 20px;
-  margin-top: 1.3rem;
-  height: 194px;
-}
 
-.line{
-  position: relative;
-  top: 0.1rem;
-  width: 1.5px;
- height: 193px;
-  background: black;
-  opacity: 0.1;
-  margin-right: 1rem;
-  visibility: hidden;
-}
-
-.line-container-2{
-  display: flex;
-  flex-direction: column;
-  width: 20px;
-  /* height: 309.56px; */
-}
-
-
-.line-2{
-  width: 1.5px;
-  /* height: 309.56px; */
-  background: black;
-  opacity: 0.1;
-}
+/*
+===================== 
+Add-Comment-Form
+=====================
+*/
 
 .add-comment-container{
   margin: 0 auto;
@@ -228,39 +195,6 @@ main{
   border-color: rgba(211,211,211,0.4);
 }
 
-#inital-text-box{
-  resize: none;
-  width: 270px;
-  height: 125px;
-  padding-top: 0.5rem;
-  padding-left: 0.5rem;
-  font-weight: 400;
-  color: rgba(0,0,0,0.5);
-  font-size: 16px;
-  border: none;
-  background: white;
-  overflow:hidden;
-  border-radius: 0.7rem;
-}
-
-
-
-.remove-focus:focus{
-  outline:none;
-} 
-
-.inital-button{
-  background:hsl(238, 40%, 52%);
-  width: 90px;
-  height: 45px;
-  border: none;
-  border-radius: 0.5rem;
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-}
-
 .comment-container-bottom{
   display: flex;
   align-items: center;
@@ -283,6 +217,53 @@ main{
   cursor: pointer;
 }
 
+
+
+#inital-text-box{
+  resize: none;
+  width: 270px;
+  height: 125px;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  font-weight: 400;
+  color: rgba(0,0,0,0.5);
+  font-size: 16px;
+  border: none;
+  background: white;
+  overflow:hidden;
+  border-radius: 0.7rem;
+}
+
+
+/*
+===================== 
+Inital Reply 
+=====================
+*/
+
+.remove-focus:focus{
+  outline:none;
+} 
+
+.inital-button{
+  background:hsl(238, 40%, 52%);
+  width: 90px;
+  height: 45px;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/*
+===================== 
+Add Reply Container
+=====================
+*/
+
+
 .add-reply-container{
   margin: 0 auto;
   margin-top: 0.5rem;
@@ -293,6 +274,13 @@ main{
   padding: 1rem;
   margin-bottom: 1rem;
 }
+
+
+/*
+===================== 
+Delete Modal
+=====================
+*/
 
 .delete-container{
   position: fixed;
@@ -344,15 +332,83 @@ main{
 }
 
 
-
 .first-btn{
   margin-right: 0.5rem;
   background: gray;
 }
 
+.first-btn:hover, .second-btn:hover{
+  opacity: 0.5;
+}
+
 .second-btn{
   background: hsl(358, 79%, 66%);
 }
+
+
+
+/*
+===================== 
+Reply Line
+=====================
+*/
+
+.line-container{
+  width: 20px;
+  margin-top: 1.3rem;
+  height: 194px;
+}
+
+.line{
+  position: relative;
+  top: 0.1rem;
+  width: 1.5px;
+ height: 193px;
+  background: black;
+  opacity: 0.1;
+  margin-right: 1rem;
+  visibility: hidden;
+}
+
+.line-container-2{
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+}
+
+
+.line-2{
+  width: 1.5px;
+  background: black;
+  opacity: 0.1;
+}
+
+ /*
+===================== 
+Vote/Score Container
+=====================
+*/
+
+.vote-counter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  width: 75px;
+  background: red;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background: hsl(223, 19%, 93%);
+  color: hsl(238, 40%, 52%);
+  font-weight: 500;
+}
+
+.vote-counter img:hover{
+  cursor: pointer;
+}
+
 
 @media only screen and (min-width: 768px) {
   .comment-container{

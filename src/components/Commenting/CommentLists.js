@@ -7,6 +7,7 @@ function CommentLists({removeItem, items, editItem, isEditing, deleteCommentMess
 
   return (
     <section>
+      {/* mapping of the comments array */}
       {items.map((item) => {
         const {id, comment} = item
        return (
@@ -57,6 +58,7 @@ function CommentLists({removeItem, items, editItem, isEditing, deleteCommentMess
                </section>
              </div>
            </div>
+           {/* delete message modal */}
            {deleteCommentMessage && (
              <DeleteCommentModal
                deleteCommentToggle={deleteCommentToggle}

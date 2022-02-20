@@ -9,11 +9,13 @@ function ReplySection3({
   deleteMessageToggle3,
   deleteMessage3,
 }) {
+  // helps set the id and reply value that is being edited
   const [edit3, setEdit3] = useState({
     id: null,
     value: "",
   });
 
+  //function to update the reply that is being edited
   const submitUpdate3 = (value) => {
     updateReply3(edit3.id, value);
     setEdit3({
@@ -22,11 +24,13 @@ function ReplySection3({
     });
   };
 
+  // only renders the reply container when reply is being edited
   if (edit3.id) {
     return <AddReply3 edit3={edit3} submitUpdate3={submitUpdate3} />;
   }
 
   return (
+    // mapping of all the replies in the third reply array
     <section>
       {replyList3.map((replies) => {
         const { id, replys3 } = replies;
@@ -42,7 +46,7 @@ function ReplySection3({
                   className="img-container"
                   width="34px"
                   height="34px"
-                  alt='juliusomo'
+                  alt="juliusomo"
                 />
                 <span className="username">juliusomo</span>
                 <div className="you-container">
@@ -72,6 +76,7 @@ function ReplySection3({
                 </div>
               </div>
             </div>
+            {/* modal for the delete message */}
             {deleteMessage3 && (
               <DeleteModal3
                 deleteMessageToggle3={deleteMessageToggle3}
